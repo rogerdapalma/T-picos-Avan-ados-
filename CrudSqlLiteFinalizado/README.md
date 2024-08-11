@@ -1,74 +1,87 @@
 # Aplicativo de Gerenciamento de Estudantes
 
-Este é um aplicativo Android simples para gerenciar informações de estudantes. Ele permite adicionar, visualizar e listar estudantes. O aplicativo foi desenvolvido utilizando Java e SQLite para o armazenamento de dados.
+Este é um aplicativo Android para o gerenciamento de informações de estudantes. Ele permite adicionar, editar, visualizar e excluir informações de estudantes, como nome, CPF, telefone e idade. O aplicativo foi desenvolvido com uma interface simples e intuitiva, utilizando o `RecyclerView` para exibir a lista de estudantes e `SQLite` como banco de dados local para armazenar as informações.
 
 ## Funcionalidades
 
-- Adicionar um novo estudante
-- Listar todos os estudantes cadastrados
-- Visualizar detalhes de um estudante
+### 1. Adicionar Estudante
+- Permite adicionar um novo estudante ao banco de dados.
+- Campos obrigatórios:
+  - Nome: Texto (Obrigatório)
+  - CPF: Formato `000.000.000-00` (Obrigatório e Validado)
+  - Telefone: Formato `(000) 00000-0000` (Obrigatório e Validado)
+  - Idade: Número inteiro (Obrigatório e Validado)
 
-## Estrutura do Projeto
+### 2. Editar Estudante
+- Permite editar as informações de um estudante existente.
+- Para editar um estudante, selecione um estudante da lista e clique no botão de editar (anteriormente botão de refresh).
+- Os campos serão preenchidos automaticamente com as informações atuais do estudante selecionado.
 
-### 1. `AndroidManifest.xml`
+### 3. Excluir Estudante
+- Permite selecionar e excluir um ou mais estudantes da lista.
+- Para excluir, selecione os estudantes que deseja remover e clique no botão de excluir.
+- Um diálogo de confirmação será exibido antes da exclusão final.
 
-Este arquivo define as atividades do aplicativo e as configurações básicas da aplicação.
+### 4. Visualização da Lista de Estudantes
+- A lista de estudantes cadastrados é exibida em um `RecyclerView`.
+- Os itens da lista exibem informações como nome, CPF, telefone e idade.
 
-### 2. `activity_main.xml`
+### 5. Atualização Automática da Lista
+- A lista de estudantes é atualizada automaticamente após adicionar, editar ou excluir um estudante.
 
-Layout principal do aplicativo contendo um `RecyclerView` para listar os estudantes e um botão flutuante para adicionar novos estudantes.
+## Estrutura do Código
 
-### 3. `activity_add_edit_student.xml`
+### `MainActivity.java`
+- **Responsável por:**
+  - Exibir a lista de estudantes cadastrados.
+  - Iniciar a atividade para adicionar ou editar um estudante.
+  - Gerenciar a exclusão de estudantes.
+  - Atualizar a lista após operações de adição, edição ou exclusão.
 
-Layout para adicionar ou editar informações de um estudante. Inclui campos de entrada para nome, CPF, telefone e idade, além de um botão para salvar as informações.
+- **Principais métodos:**
+  - `onCreate`: Inicializa a interface e configura os botões e o `RecyclerView`.
+  - `onActivityResult`: Atualiza a lista de estudantes após uma operação de adição ou edição.
+  - `deleteSelectedStudents`: Exclui os estudantes selecionados.
+  - `refreshStudentList`: Atualiza o `RecyclerView` com a lista atualizada de estudantes.
 
-### 4. `student_item.xml`
+### `AddEditStudentActivity.java`
+- **Responsável por:**
+  - Gerenciar a adição e edição de estudantes.
+  - Validar a entrada de dados nos campos de texto.
+  - Aplicar máscaras para CPF e telefone.
+  - Enviar resultados de sucesso à `MainActivity` após uma operação.
 
-Layout para cada item de estudante exibido na lista, mostrando nome, CPF, telefone e idade.
+- **Principais métodos:**
+  - `onCreate`: Inicializa os campos de texto e o botão de salvar, e verifica se a operação é de adição ou edição.
+  - `saveStudent`: Salva ou atualiza os dados do estudante no banco de dados.
+  - `validateInput`: Valida os dados inseridos nos campos.
+  - `loadStudentData`: Carrega os dados do estudante para edição.
 
-### 5. `MainActivity.java`
+### `StudentDatabaseHelper.java`
+- **Responsável por:**
+  - Gerenciar o banco de dados SQLite.
+  - Criar, atualizar, inserir, editar e excluir registros de estudantes.
 
-Atividade principal do aplicativo. Responsável por exibir a lista de estudantes e iniciar a atividade para adicionar um novo estudante.
+- **Principais métodos:**
+  - `onCreate`: Cria a tabela de estudantes no banco de dados.
+  - `addStudent`: Insere um novo estudante no banco de dados.
+  - `updateStudent`: Atualiza os dados de um estudante existente.
+  - `deleteStudent`: Remove um estudante do banco de dados.
+  - `getAllStudents`: Recupera todos os estudantes cadastrados.
+  - `getStudentById`: Recupera um estudante específico pelo ID.
 
-### 6. `AddEditStudentActivity.java`
+### `StudentAdapter.java`
+- **Responsável por:**
+  - Exibir a lista de estudantes no `RecyclerView`.
+  - Gerenciar a seleção de estudantes para edição ou exclusão.
 
-Atividade para adicionar ou editar um estudante. Inclui lógica para capturar os dados de entrada do usuário e salvar no banco de dados.
+- **Principais métodos:**
+  - `onBindViewHolder`: Vincula os dados de cada estudante ao `RecyclerView`.
+  - `getSelectedStudents`: Retorna a lista de estudantes selecionados.
+  - `clearSelection`: Limpa a seleção de estudantes após uma operação.
 
-### 7. `Student.java`
+## Instalação e Configuração
 
-Classe de modelo que representa um estudante, contendo campos para nome, CPF, telefone e idade, além dos métodos getter e setter.
-
-### 8. `StudentAdapter.java`
-
-Adaptador para o `RecyclerView` que exibe a lista de estudantes. Responsável por vincular os dados dos estudantes aos elementos de interface do usuário no layout `student_item.xml`.
-
-### 9. `StudentDatabaseHelper.java`
-
-Classe que gerencia o banco de dados SQLite. Inclui métodos para criar a tabela de estudantes, adicionar um novo estudante e recuperar todos os estudantes.
-
-## Como Funciona
-
-### Adicionando um Estudante
-
-1. Na tela principal (`MainActivity`), clique no botão flutuante (`FloatingActionButton`).
-2. Isso abrirá a atividade `AddEditStudentActivity`.
-3. Preencha os campos de nome, CPF, telefone e idade.
-4. Clique no botão "Salvar" para adicionar o estudante ao banco de dados.
-
-### Listando Estudantes
-
-1. Na tela principal (`MainActivity`), a lista de estudantes será carregada automaticamente do banco de dados e exibida no `RecyclerView`.
-
-## Como Executar o Projeto
-
-1. Clone o repositório.
-2. Abra o projeto no Android Studio.
-3. Conecte um dispositivo Android ou inicie um emulador.
-4. Execute o aplicativo a partir do Android Studio.
-
-## Requisitos
-
-- Android Studio
-- Dispositivo ou Emulador Android com versão mínima API 16
-
-
+### Pré-requisitos
+- Android Studio instalado.
+- Dispositivo ou emulador Android.
