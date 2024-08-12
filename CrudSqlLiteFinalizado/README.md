@@ -1,87 +1,76 @@
 # Aplicativo de Gerenciamento de Estudantes
 
-Este é um aplicativo Android para o gerenciamento de informações de estudantes. Ele permite adicionar, editar, visualizar e excluir informações de estudantes, como nome, CPF, telefone e idade. O aplicativo foi desenvolvido com uma interface simples e intuitiva, utilizando o `RecyclerView` para exibir a lista de estudantes e `SQLite` como banco de dados local para armazenar as informações.
 
-## Funcionalidades
+### **Título:** Aplicativo de Gerenciamento de Estudantes    
+**Apresentador:** Roger Palma 
 
-### 1. Adicionar Estudante
-- Permite adicionar um novo estudante ao banco de dados.
-- Campos obrigatórios:
-  - Nome: Texto (Obrigatório)
-  - CPF: Formato `000.000.000-00` (Obrigatório e Validado)
-  - Telefone: Formato `(000) 00000-0000` (Obrigatório e Validado)
-  - Idade: Número inteiro (Obrigatório e Validado)
 
-### 2. Editar Estudante
-- Permite editar as informações de um estudante existente.
-- Para editar um estudante, selecione um estudante da lista e clique no botão de editar (anteriormente botão de refresh).
-- Os campos serão preenchidos automaticamente com as informações atuais do estudante selecionado.
+##  Objetivo 
+- Utilizar `SQLite` para armazenamento local de dados de forma eficiente.
+- Utilizar funcionalizadas do `AndroidStudio(java)`
 
-### 3. Excluir Estudante
-- Permite selecionar e excluir um ou mais estudantes da lista.
-- Para excluir, selecione os estudantes que deseja remover e clique no botão de excluir.
-- Um diálogo de confirmação será exibido antes da exclusão final.
-
-### 4. Visualização da Lista de Estudantes
-- A lista de estudantes cadastrados é exibida em um `RecyclerView`.
-- Os itens da lista exibem informações como nome, CPF, telefone e idade.
-
-### 5. Atualização Automática da Lista
-- A lista de estudantes é atualizada automaticamente após adicionar, editar ou excluir um estudante.
+## Funcionalidades Principais 
+1. **Adicionar Estudante:** Inclusão de novos estudantes com validação de dados.
+2. **Editar Estudante:** Atualização das informações existentes.
+3. **Excluir Estudante:** Remoção de um ou mais estudantes com confirmação.
+4. **Visualização da Lista:** Exibição organizada dos estudantes em um `RecyclerView`.
+5. **Atualização Automática:** Sincronização em tempo real das alterações feitas na lista.
 
 ## Estrutura do Código
+- **MainActivity.java:** Gerencia a interface principal e as operações de adição, edição e exclusão.
+- **AddEditStudentActivity.java:** Responsável pela adição e edição de estudantes.
+- **StudentDatabaseHelper.java:** Gerencia as operações do banco de dados SQLite.
+- **StudentAdapter.java:** Exibe e gerencia a seleção de estudantes no `RecyclerView`.
 
-### `MainActivity.java`
-- **Responsável por:**
-  - Exibir a lista de estudantes cadastrados.
-  - Iniciar a atividade para adicionar ou editar um estudante.
-  - Gerenciar a exclusão de estudantes.
-  - Atualizar a lista após operações de adição, edição ou exclusão.
-
-- **Principais métodos:**
-  - `onCreate`: Inicializa a interface e configura os botões e o `RecyclerView`.
-  - `onActivityResult`: Atualiza a lista de estudantes após uma operação de adição ou edição.
+## Detalhes do `MainActivity.java` 
+- Exibe a lista de estudantes.
+- Gerencia a navegação para adicionar ou editar um estudante.
+- Funções principais:
+  - `onCreate`: Inicializa interface e configurações.
   - `deleteSelectedStudents`: Exclui os estudantes selecionados.
-  - `refreshStudentList`: Atualiza o `RecyclerView` com a lista atualizada de estudantes.
+  - `refreshStudentList`: Atualiza o `RecyclerView` com a lista atualizada.
 
-### `AddEditStudentActivity.java`
-- **Responsável por:**
-  - Gerenciar a adição e edição de estudantes.
-  - Validar a entrada de dados nos campos de texto.
-  - Aplicar máscaras para CPF e telefone.
-  - Enviar resultados de sucesso à `MainActivity` após uma operação.
+## Detalhes do `AddEditStudentActivity.java`  
+- Gerencia adição e edição de estudantes.
+- Valida entrada de dados (CPF, telefone, idade).
+- Funções principais:
+  - `saveStudent`: Salva ou atualiza dados no banco de dados.
+  - `validateInput`: Verifica a validade dos dados inseridos.
+  - `loadStudentData`: Carrega dados do estudante para edição.
+  - `TextWatcher` : Usado para criar a maskara dos dados
 
-- **Principais métodos:**
-  - `onCreate`: Inicializa os campos de texto e o botão de salvar, e verifica se a operação é de adição ou edição.
-  - `saveStudent`: Salva ou atualiza os dados do estudante no banco de dados.
-  - `validateInput`: Valida os dados inseridos nos campos.
-  - `loadStudentData`: Carrega os dados do estudante para edição.
+## Detalhes do `StudentDatabaseHelper.java`
+**Título:** `StudentDatabaseHelper.java`  
+- Gerencia o banco de dados SQLite.
+- Operações principais:
+  - `addStudent`: Insere novo estudante.
+  - `updateStudent`: Atualiza dados do estudante.
+  - `deleteStudent`: Remove estudante do banco.
+  - `getAllStudents`: Recupera todos os registros.
 
-### `StudentDatabaseHelper.java`
-- **Responsável por:**
-  - Gerenciar o banco de dados SQLite.
-  - Criar, atualizar, inserir, editar e excluir registros de estudantes.
+## Detalhes do `StudentAdapter.java`
+**Título:** `StudentAdapter.java`  
+- Exibe lista no `RecyclerView`.
+- Gerencia a seleção de estudantes.
+- Funções principais:
+  - `onBindViewHolder`: Vincula dados de cada estudante à interface.
+  - `getSelectedStudents`: Retorna estudantes selecionados.
+  - `clearSelection`: Limpa seleção após operação.
 
-- **Principais métodos:**
-  - `onCreate`: Cria a tabela de estudantes no banco de dados.
-  - `addStudent`: Insere um novo estudante no banco de dados.
-  - `updateStudent`: Atualiza os dados de um estudante existente.
-  - `deleteStudent`: Remove um estudante do banco de dados.
-  - `getAllStudents`: Recupera todos os estudantes cadastrados.
-  - `getStudentById`: Recupera um estudante específico pelo ID.
+## Demonstração do Aplicativo 
+ <p float="left">
+  <img src="app1.png" width="45%" />
+  <img src="app2.png" width="45%" />
+</p>
 
-### `StudentAdapter.java`
-- **Responsável por:**
-  - Exibir a lista de estudantes no `RecyclerView`.
-  - Gerenciar a seleção de estudantes para edição ou exclusão.
 
-- **Principais métodos:**
-  - `onBindViewHolder`: Vincula os dados de cada estudante ao `RecyclerView`.
-  - `getSelectedStudents`: Retorna a lista de estudantes selecionados.
-  - `clearSelection`: Limpa a seleção de estudantes após uma operação.
+## Conclusão
+**Título:** Conclusão  
+- Resumo das funcionalidades.
+- Otima demonstração das funcionalidades
+- Próximos passos: Possíveis melhorias e funcionalidades futuras.
 
-## Instalação e Configuração
+---
 
-### Pré-requisitos
-- Android Studio instalado.
-- Dispositivo ou emulador Android.
+## Perguntas e Respostas
+- Abertura para perguntas da audiência.
