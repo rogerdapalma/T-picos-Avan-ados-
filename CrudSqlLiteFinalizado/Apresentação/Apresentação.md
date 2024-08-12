@@ -37,6 +37,7 @@
   - `saveStudent`: Salva ou atualiza dados no banco de dados.
   - `validateInput`: Verifica a validade dos dados inseridos.
   - `loadStudentData`: Carrega dados do estudante para edição.
+  - `TextWatcher` : Usado para criar a maskara dos dados
 
 ## Detalhes do `StudentDatabaseHelper.java`
 **Título:** `StudentDatabaseHelper.java`  
