@@ -1,4 +1,3 @@
-
 # TRABALHO PRODUTO DE APRENDIZAGEM CRUD
 ## Autor : Roger da Palma
 O **Trabalho** em questão é um aplicativo Android projetado para gerenciar informações de estudantes e seus pagamentos de faturas. Ele permite que os usuários adicionem, editem e visualizem detalhes de estudantes, além de gerenciar faturas associadas a cada estudante, incluindo a capacidade de visualizar faturas abertas e adicionar novos pagamentos.
@@ -13,20 +12,24 @@ O objetivo deste projeto é desenvolver um aplicativo Android que:
 ## Funcionalidades Implementadas
 
 1. **Listagem de Estudantes**: Exibe uma lista de todos os estudantes registrados, incluindo suas informações básicas e o número de faturas abertas.
-![Listagem de Estudantes](Listagem.png)
+<img src="Listagem.png" alt="Listagem de Estudantes" width="600">
+   
 2. **Visualização de Detalhes do Estudante**: Mostra informações detalhadas de um estudante específico, incluindo todas as faturas associadas e seu status.
-![Visualização de Detalhes do Estudante](Detalhes.png)
+<img src="Detalhes.png" alt="Visualização de Detalhes do Estudante" width="600">
+   
 3. **Adição e Edição de Estudantes**: Permite a adição de novos estudantes e a edição dos detalhes existentes.
-4. **Exclusão de Estudantes**: Permite excluir ou deixar o estudante inativo
-![Exclusão de Estudantes](Exclusao.png)
+   
+4. **Exclusão de Estudantes**: Permite excluir ou deixar o estudante inativo.
+<img src="Exclusao.png" alt="Exclusão de Estudantes" width="600">
+
 5. **Gerenciamento de Faturas**: Exibe todas as faturas associadas a um estudante, permitindo adicionar novas faturas e visualizar o status das existentes (pagas ou abertas).
 
 ## Bibliotecas e Ferramentas Utilizadas
 
 - **Android SDK**: Framework principal para o desenvolvimento do aplicativo Android.
 - **SQLite**: Banco de dados local utilizado para armazenar informações de estudantes e faturas.
-- **Android RecyclerView**: Utilizado para exibir listas de dados de forma eficiente e com capacidade de rolagem.(como `ListView` e `GridVie` )
-- **textViewName**: Exibindo mensagens das validações e etc! (textAlert)
+- **Android RecyclerView**: Utilizado para exibir listas de dados de forma eficiente e com capacidade de rolagem (como `ListView` e `GridView`).
+- **textViewName**: Exibindo mensagens das validações e etc! (textAlert).
 - **Android Room**: Poderia ser usado para simplificar operações de banco de dados, mas neste projeto utilizamos `SQLiteOpenHelper` para manipular diretamente o banco de dados SQLite.
 
 ## Arquitetura do Projeto
@@ -69,18 +72,18 @@ O projeto segue uma arquitetura MVC simplificada:
 
 ## Dificuldades
 
-- **identificar Erros no codigo**: Muitas das vezes os erros não exibiam crashs, tinha que ser consultado nas logs para ter uma trilha do erro cometido
-- **Exibição de faturas registradas(Utilizar duas tabelas em uma só)**: Foi custoso por muitas das vezes não era exibido no local certo ou nem exibia.
-- **Versão do banco** : As vezes era esquecido de trocar a versão do banco causando um crash sem "motivo" aparente...
+- **Identificar erros no código**: Muitas das vezes os erros não exibiam crashes, sendo necessário consultar os logs para rastrear o erro cometido.
+- **Exibição de faturas registradas (Utilizar duas tabelas em uma só)**: Foi custoso, pois muitas vezes não eram exibidas no local certo ou nem eram exibidas.
+- **Versão do banco**: Às vezes era esquecido de trocar a versão do banco, causando um crash sem "motivo" aparente.
+
 ## Melhorias Futuras
 
 - **Autenticação de Usuário**: Implementar autenticação para diferentes níveis de acesso.
-- **Notificações**: Adicionar notificações para faturas vencidas ou eventos importantes, adicionar prazos para as faturas.
+- **Notificações**: Adicionar notificações para faturas vencidas ou eventos importantes, além de adicionar prazos para as faturas.
 - **Testes Automatizados**: Implementar testes unitários e de interface do usuário para garantir a qualidade do código.
-- **Atualizar as faturas na lista de todos os alunos**: Não está atualizando diretamento como deveria...
-- **Melhorias no design**: Não foi alterado cores padrao do codigo, poderiam ser mexidas para ficar mais com a cara do projeto 
+- **Atualizar as faturas na lista de todos os alunos**: Não está atualizando diretamente como deveria.
+- **Melhorias no design**: Alterar as cores padrão do código para ficarem mais alinhadas com a identidade visual do projeto.
 
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
