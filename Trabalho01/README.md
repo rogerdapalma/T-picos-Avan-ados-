@@ -12,15 +12,15 @@ O objetivo deste projeto é desenvolver um aplicativo Android que:
 ## Funcionalidades Implementadas
 
 1. **Listagem de Estudantes**: Exibe uma lista de todos os estudantes registrados, incluindo suas informações básicas e o número de faturas abertas.
-<img src="Listagem.png" alt="Listagem de Estudantes" width="600">
+<img src="Apresentação/Listagem.png" alt="Listagem de Estudantes" width="600">
    
 2. **Visualização de Detalhes do Estudante**: Mostra informações detalhadas de um estudante específico, incluindo todas as faturas associadas e seu status.
-<img src="Detalhes.png" alt="Visualização de Detalhes do Estudante" width="600">
+<img src="Apresentação/Detalhes.png" alt="Visualização de Detalhes do Estudante" width="600">
    
 3. **Adição e Edição de Estudantes**: Permite a adição de novos estudantes e a edição dos detalhes existentes.
    
 4. **Exclusão de Estudantes**: Permite excluir ou deixar o estudante inativo.
-<img src="Exclusao.png" alt="Exclusão de Estudantes" width="600">
+<img src="Apresentação/Exclusao.png" alt="Exclusão de Estudantes" width="600">
 
 5. **Gerenciamento de Faturas**: Exibe todas as faturas associadas a um estudante, permitindo adicionar novas faturas e visualizar o status das existentes (pagas ou abertas).
 
