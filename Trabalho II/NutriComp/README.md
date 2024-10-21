@@ -1,76 +1,119 @@
-# Aplicativo de Gerenciamento de Estudantes
+# NutriComp - Comparador de Alimentos Nutricionais
 
+**Autor:** Roger da Palma
 
-### **Título:** Aplicativo de Gerenciamento de Estudantes    
-**Apresentador:** Roger Palma 
+## Objetivo Geral
 
+NutriComp é um aplicativo projetado para comparar informações nutricionais de alimentos e sugerir alternativas mais saudáveis ou adequadas conforme as necessidades dos usuários. Ele ajuda a visualizar valores nutricionais, calcular porções e sugerir substituições alimentares de maneira eficiente.
 
-##  Objetivo 
-- Utilizar `SQLite` para armazenamento local de dados de forma eficiente.
-- Utilizar funcionalizadas do `AndroidStudio(java)`
+## Funcionalidades Principais
 
-## Funcionalidades Principais 
-1. **Adicionar Estudante:** Inclusão de novos estudantes com validação de dados.
-2. **Editar Estudante:** Atualização das informações existentes.
-3. **Excluir Estudante:** Remoção de um ou mais estudantes com confirmação.
-4. **Visualização da Lista:** Exibição organizada dos estudantes em um `RecyclerView`.
-5. **Atualização Automática:** Sincronização em tempo real das alterações feitas na lista.
+- **Cadastro de Usuários:** Criação de contas de usuário com validação de email e senha.
+- **Exibição de Alimentos:** Listagem de alimentos organizados por categorias, como "Carnes e derivados" ou "Frutas e derivados".
+- **Busca de Alimentos:** Filtragem dinâmica dos alimentos conforme o usuário digita.
+- **Comparação de Alimentos:** Comparação entre dois alimentos, exibindo suas composições nutricionais (a ser implementado em futuras versões).
+- **Alternativas Nutricionais:** Exibição de alimentos alternativos nutricionalmente semelhantes.
+- **Cálculo Nutricional por Gramas:** Ajuste dinâmico da porção e cálculo dos valores nutricionais baseados no peso inserido (planejado para atualizações futuras).
 
-## Estrutura do Código
-- **MainActivity.java:** Gerencia a interface principal e as operações de adição, edição e exclusão.
-- **AddEditStudentActivity.java:** Responsável pela adição e edição de estudantes.
-- **StudentDatabaseHelper.java:** Gerencia as operações do banco de dados SQLite.
-- **StudentAdapter.java:** Exibe e gerencia a seleção de estudantes no `RecyclerView`.
+## Funcionalidades Futuras
 
-## Detalhes do `MainActivity.java` 
-- Exibe a lista de estudantes.
-- Gerencia a navegação para adicionar ou editar um estudante.
-- Funções principais:
-  - `onCreate`: Inicializa interface e configurações.
-  - `deleteSelectedStudents`: Exclui os estudantes selecionados.
-  - `refreshStudentList`: Atualiza o `RecyclerView` com a lista atualizada.
+- Comparação detalhada entre dois alimentos, exibindo a quantidade por gramas e valores nutricionais calculados.
+- Integração de histórico de comparações, permitindo que os usuários revisitem comparações passadas.
 
-## Detalhes do `AddEditStudentActivity.java`  
-- Gerencia adição e edição de estudantes.
-- Valida entrada de dados (CPF, telefone, idade).
-- Funções principais:
-  - `saveStudent`: Salva ou atualiza dados no banco de dados.
-  - `validateInput`: Verifica a validade dos dados inseridos.
-  - `loadStudentData`: Carrega dados do estudante para edição.
-  - `TextWatcher` : Usado para criar a maskara dos dados
+## Banco de Dados
 
-## Detalhes do `StudentDatabaseHelper.java`
-**Título:** `StudentDatabaseHelper.java`  
-- Gerencia o banco de dados SQLite.
-- Operações principais:
-  - `addStudent`: Insere novo estudante.
-  - `updateStudent`: Atualiza dados do estudante.
-  - `deleteStudent`: Remove estudante do banco.
-  - `getAllStudents`: Recupera todos os registros.
+O NutriComp utiliza `SQLite` para armazenar os dados de forma local. Isso permite o uso do aplicativo offline, mantendo informações nutricionais e de usuários diretamente no dispositivo.
 
-## Detalhes do `StudentAdapter.java`
-**Título:** `StudentAdapter.java`  
-- Exibe lista no `RecyclerView`.
-- Gerencia a seleção de estudantes.
-- Funções principais:
-  - `onBindViewHolder`: Vincula dados de cada estudante à interface.
-  - `getSelectedStudents`: Retorna estudantes selecionados.
-  - `clearSelection`: Limpa seleção após operação.
+### Tabelas
 
-## Demonstração do Aplicativo 
- <p float="left">
-  <img src="app1.png" width="45%" />
-  <img src="app2.png" width="45%" />
-</p>
+1. **Usuário:**
+   - `idusuario`: Identificador único.
+   - `nome`: Nome do usuário.
+   - `email`: Endereço de email.
+   - `senha`: Senha para login.
+  
+2. **Alimento:**
+   - `idalimento`: Identificador único.
+   - `nome`: Nome do alimento.
+   - `categoria`: Categoria a qual o alimento pertence.
+   - `calorias`, `carboidratos`, `proteinas`, `gorduras`, `fibras`: Valores nutricionais por 100g.
+   - `quantidadeporgramas`: Quantidade de gramas para cálculo nutricional.
 
+3. **Comparativo:**
+   - `idcomparativo`: Identificador único.
+   - `idusuario`: Referência ao usuário.
+   - `idalimento1`, `idalimento2`: Referências aos alimentos comparados.
+   - `data`: Data do comparativo.
+   - `quantidadeporgramas`: Quantidade usada na comparação.
 
-## Conclusão
-**Título:** Conclusão  
-- Resumo das funcionalidades.
-- Otima demonstração das funcionalidades
-- Próximos passos: Possíveis melhorias e funcionalidades futuras.
+## Bibliotecas Utilizadas
+
+- **AndroidX RecyclerView:** Exibição eficiente de listas de dados, como a listagem de alimentos.
+- **SQLite:** Banco de dados local para armazenamento de usuários e informações nutricionais.
+- **Java TextWatcher:** Monitora a entrada de texto para busca dinâmica de alimentos.
+- **Material Design:** Design moderno e intuitivo para uma experiência do usuário agradável.
+
+## Estrutura do Projeto
+
+- **MainActivity.java:** Tela inicial com a listagem das categorias de alimentos.
+- **FoodListActivity.java:** Exibe os alimentos registrados em cada categoria, com filtro dinâmico na barra de pesquisa.
+- **LoginActivity.java:** Tela de login de usuários com validação de email e senha.
+- **RegisterActivity.java:** Tela de cadastro de novos usuários.
+- **CategoryAdapter.java:** Adaptador usado para listar categorias no `RecyclerView`.
+- **FoodAdapter.java:** Adaptador para listar alimentos e seus detalhes nutricionais.
+
+## Desafios Enfrentados
+
+- **Integração com SQLite:** Manter o banco de dados sincronizado com as informações nutricionais e garantir a correta busca dos alimentos por categoria.
+- **Exibição Dinâmica:** Ajustar o `RecyclerView` para buscar e exibir resultados conforme o usuário digita.
+- **Navegação entre Activities:** Manter o fluxo adequado ao navegar entre a tela inicial, categorias e a listagem de alimentos.
+
+## Próximas Atualizações
+
+- **Comparação de Alimentos:** Será adicionada a funcionalidade de comparar dois alimentos e exibir a composição nutricional somada.
+- **Cálculo Nutricional por Gramas:** Permitir que o usuário insira a quantidade de gramas desejada, e o aplicativo calculará os valores nutricionais com base nessa quantidade.
+  
+---
+
+# Planejamento Scrum
+
+## Metodologia de Trabalho
+
+Utilizamos Scrum para organizar e desenvolver o aplicativo, garantindo entregas contínuas e melhorias iterativas. Aqui está o cronograma detalhado das tarefas:
+
+### Sprints
+
+| Sprint    | Funcionalidade                                                  | Status          | Duração   |
+|-----------|------------------------------------------------------------------|-----------------|-----------|
+| **Sprint 1** | Configuração inicial do projeto e criação do banco de dados SQLite | **Concluído**   | 2 semanas |
+| **Sprint 2** | Implementação das telas de login e cadastro                   | **Concluído**   | 2 semanas |
+| **Sprint 3** | Criação da listagem de alimentos por categoria com filtro dinâmico | **Concluído**   | 2 semanas |
+| **Sprint 4** | Implementação da funcionalidade de comparação entre alimentos | **Em Andamento**| 2 semanas |
+| **Sprint 5** | Exibição de alternativas nutricionais e ajuste por porção     | **Planejado**   | 2 semanas |
+| **Sprint 6** | Melhorias de interface e experiência do usuário (UX)          | **Planejado**   | 2 semanas |
+
+## Funcionalidades Concluídas
+
+- **Cadastro e Login de Usuários:** Validado com checagem de email e senha.
+- **Listagem de Alimentos por Categoria:** Exibição de alimentos com barra de pesquisa dinâmica.
+- **Navegação entre telas:** Tela inicial, login, registro e listagem funcionando corretamente.
+  
+## Funcionalidades Futuras
+
+- **Comparação entre alimentos**: Implementação e cálculo de valores nutricionais com base na quantidade de gramas.
+- **Sugestões de alimentos alternativos**: Baseado nos valores nutricionais dos alimentos selecionados.
 
 ---
 
-## Perguntas e Respostas
-- Abertura para perguntas da audiência.
+## Ferramentas e Tecnologias Utilizadas
+
+- **IDE:** Android Studio.
+- **Linguagem:** Java.
+- **Banco de Dados:** SQLite.
+- **Bibliotecas:** AndroidX, Material Design.
+
+---
+
+## Considerações Finais
+
+O **NutriComp** está se aproximando das funcionalidades finais, com a comparação detalhada e ajuste de porções sendo implementados nas próximas sprints. O uso de metodologias ágeis como Scrum permite uma abordagem flexível, garantindo que o produto evolua com base no feedback dos usuários e nos testes realizados.
