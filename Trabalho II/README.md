@@ -4,153 +4,117 @@
 
 ## Objetivo Geral
 
-O aplicativo visa facilitar a comparação nutricional de diversos alimentos, como arroz, feijão, frutas, legumes, entre outros, com base nas necessidades específicas dos usuários. Além disso, exibirá embaixo da comparação inicial alimentos alternativos que sejam boas substituições nutricionais para o alimento escolhido, ajudando os usuários a encontrarem opções mais saudáveis ou adequadas às suas necessidades.
-
-## Justificativa
-
-Este aplicativo é importante para pessoas que desejam melhorar a alimentação, atletas, pessoas em dietas especiais e indivíduos que precisam monitorar sua ingestão de nutrientes. A possibilidade de comparar alimentos e ver sugestões de substituições ajuda a tomar decisões mais conscientes sobre a alimentação.
+NutriComp é um aplicativo projetado para comparar informações nutricionais de alimentos e sugerir alternativas mais saudáveis ou adequadas conforme as necessidades dos usuários. Ele ajuda a visualizar valores nutricionais, calcular porções e sugerir substituições alimentares de maneira eficiente.
 
 ## Funcionalidades Principais
 
-- Cadastro de usuários para personalização das comparações.
-- Exibição de informações nutricionais detalhadas (calorias, proteínas, carboidratos, gorduras, etc.).
-- Comparação de diferentes alimentos, ajustável para diferentes porções (ex.: 100g, 200g).
-- Exibição de alternativas nutricionalmente similares ao alimento escolhido.
-- Histórico de comparações para consulta futura.
-- Filtragem de alimentos por categoria (ex.: grãos, vegetais, proteínas).
-- Integração futura de geolocalização para encontrar alimentos saudáveis próximos.
+- **Cadastro de Usuários:** Criação de contas de usuário com validação de email e senha.
+- **Exibição de Alimentos:** Listagem de alimentos organizados por categorias, como "Carnes e derivados" ou "Frutas e derivados".
+- **Busca de Alimentos:** Filtragem dinâmica dos alimentos conforme o usuário digita.
+- **Comparação de Alimentos:** Comparação entre dois alimentos, exibindo suas composições nutricionais (a ser implementado em futuras versões).
+- **Alternativas Nutricionais:** Exibição de alimentos alternativos nutricionalmente semelhantes.
+- **Cálculo Nutricional por Gramas:** Ajuste dinâmico da porção e cálculo dos valores nutricionais baseados no peso inserido (planejado para atualizações futuras).
+
+## Funcionalidades Futuras
+
+- Comparação detalhada entre dois alimentos, exibindo a quantidade por gramas e valores nutricionais calculados.
+- Integração de histórico de comparações, permitindo que os usuários revisitem comparações passadas.
 
 ## Banco de Dados
 
-Será utilizado SQLite, uma solução de banco de dados local eficiente e leve. A escolha é justificada por ser suficiente para armazenar dados nutricionais e informações de usuários sem a necessidade de uma conexão com a internet.
+O NutriComp utiliza `SQLite` para armazenar os dados de forma local. Isso permite o uso do aplicativo offline, mantendo informações nutricionais e de usuários diretamente no dispositivo.
 
-## Modelagem do Banco de Dados
+### Tabelas
 
-### Entidades:
+1. **Usuário:**
+   - `idusuario`: Identificador único.
+   - `nome`: Nome do usuário.
+   - `email`: Endereço de email.
+   - `senha`: Senha para login.
+  
+2. **Alimento:**
+   - `idalimento`: Identificador único.
+   - `nome`: Nome do alimento.
+   - `categoria`: Categoria a qual o alimento pertence.
+   - `calorias`, `carboidratos`, `proteinas`, `gorduras`, `fibras`: Valores nutricionais por 100g.
+   - `quantidadeporgramas`: Quantidade de gramas para cálculo nutricional.
 
-- Usuário: `idusuario`, `nome`, `email`, `senha`.
-- Alimento: `idalimento`, `nome`, `categoria`, `calorias`, `carboidratos`, `proteínas`, `gorduras`, `fibras`, `quantidadeporgramas`.
-- Comparativo: `idcomparativo`, `idusuario`, `idalimento1`, `idalimento2`, `data`, `quantidadeporgramas`.
+3. **Comparativo:**
+   - `idcomparativo`: Identificador único.
+   - `idusuario`: Referência ao usuário.
+   - `idalimento1`, `idalimento2`: Referências aos alimentos comparados.
+   - `data`: Data do comparativo.
+   - `quantidadeporgramas`: Quantidade usada na comparação.
 
-### Usuário
+## Bibliotecas Utilizadas
 
-| Atributo  | Tipo    |
-|-----------|---------|
-| idusuario | int     |
-| nome      | String  |
-| email     | String  |
-| senha     | String  |
+- **AndroidX RecyclerView:** Exibição eficiente de listas de dados, como a listagem de alimentos.
+- **SQLite:** Banco de dados local para armazenamento de usuários e informações nutricionais.
+- **Java TextWatcher:** Monitora a entrada de texto para busca dinâmica de alimentos.
+- **Material Design:** Design moderno e intuitivo para uma experiência do usuário agradável.
 
-**1** realiza **\*** comparativos
+## Estrutura do Projeto
 
-### Comparativo
+- **MainActivity.java:** Tela inicial com a listagem das categorias de alimentos.
+- **FoodListActivity.java:** Exibe os alimentos registrados em cada categoria, com filtro dinâmico na barra de pesquisa.
+- **LoginActivity.java:** Tela de login de usuários com validação de email e senha.
+- **RegisterActivity.java:** Tela de cadastro de novos usuários.
+- **CategoryAdapter.java:** Adaptador usado para listar categorias no `RecyclerView`.
+- **FoodAdapter.java:** Adaptador para listar alimentos e seus detalhes nutricionais.
 
-| Atributo            | Tipo    |
-|---------------------|---------|
-| idcomparativo        | int     |
-| idusuario            | int     |
-| idalimento1          | int     |
-| idalimento2          | int     |
-| data                | Date    |
-| quantidadeporgramas  | int     |
+## Desafios Enfrentados
 
-**1** compara **1** alimentos
+- **Integração com SQLite:** Manter o banco de dados sincronizado com as informações nutricionais e garantir a correta busca dos alimentos por categoria.
+- **Exibição Dinâmica:** Ajustar o `RecyclerView` para buscar e exibir resultados conforme o usuário digita.
+- **Navegação entre Activities:** Manter o fluxo adequado ao navegar entre a tela inicial, categorias e a listagem de alimentos.
 
-### Alimento
+## Próximas Atualizações
 
-| Atributo            | Tipo    |
-|---------------------|---------|
-| idalimento          | int     |
-| nome                | String  |
-| categoria           | String  |
-| calorias            | float   |
-| carboidratos        | float   |
-| proteinas           | float   |
-| gorduras            | float   |
-| fibras              | float   |
-| quantidadeporgramas | int     |
+- **Comparação de Alimentos:** Será adicionada a funcionalidade de comparar dois alimentos e exibir a composição nutricional somada.
+- **Cálculo Nutricional por Gramas:** Permitir que o usuário insira a quantidade de gramas desejada, e o aplicativo calculará os valores nutricionais com base nessa quantidade.
+  
+---
 
+# Planejamento Scrum
 
-![Descrição da Imagem](diagram.png)
-### Relacionamentos
+## Metodologia de Trabalho
 
-- **Usuário** (1) realiza (muitos) **Comparativos**.
-- **Comparativo** (1) compara (1) **Alimento**.
+Utilizamos Scrum para organizar e desenvolver o aplicativo, garantindo entregas contínuas e melhorias iterativas. Aqui está o cronograma detalhado das tarefas:
 
+### Sprints
 
-### Relações:
+| Sprint    | Funcionalidade                                                  | Status          | Duração   |
+|-----------|------------------------------------------------------------------|-----------------|-----------|
+| **Sprint 1** | Configuração inicial do projeto e criação do banco de dados SQLite | **Concluído**   | 2 semanas |
+| **Sprint 2** | Implementação das telas de login e cadastro                   | **Concluído**   | 2 semanas |
+| **Sprint 3** | Criação da listagem de alimentos por categoria com filtro dinâmico | **Concluído**   | 2 semanas |
+| **Sprint 4** | Implementação da funcionalidade de comparação entre alimentos | **Em Andamento**| 2 semanas |
+| **Sprint 5** | Exibição de alternativas nutricionais e ajuste por porção     | **Planejado**   | 2 semanas |
+| **Sprint 6** | Melhorias de interface e experiência do usuário (UX)          | **Planejado**   | 2 semanas |
 
-- Cada usuário pode realizar vários comparativos.
-- Cada comparativo envolve dois alimentos principais.
-- A tabela de alimentos também será utilizada para sugerir substituições nutricionais.
+## Funcionalidades Concluídas
 
-## Metodologia Ágil
+- **Cadastro e Login de Usuários:** Validado com checagem de email e senha.
+- **Listagem de Alimentos por Categoria:** Exibição de alimentos com barra de pesquisa dinâmica.
+- **Navegação entre telas:** Tela inicial, login, registro e listagem funcionando corretamente.
+  
+## Funcionalidades Futuras
 
-Scrum será utilizado devido à sua flexibilidade e ao foco em entregas incrementais, permitindo ajustes rápidos durante o desenvolvimento do aplicativo, que requer testes constantes e melhorias iterativas.
+- **Comparação entre alimentos**: Implementação e cálculo de valores nutricionais com base na quantidade de gramas.
+- **Sugestões de alimentos alternativos**: Baseado nos valores nutricionais dos alimentos selecionados.
 
-## Implementação da Metodologia
-
-- **Sprints:** Ciclos de 2 semanas para entrega de funcionalidades.
-- **Reuniões diárias:** Check-ins para garantir que o progresso está em dia.
-- **Kanban:** Organização visual das tarefas e do backlog de desenvolvimento.
-- **Backlog:** Lista de funcionalidades a serem implementadas com prioridade.
-
-## Design e UX
-
-### Wireframes incluirão:
-
-- Tela de login/cadastro.
-- Tela de listagem de alimentos.
-- Tela de comparação entre dois alimentos, com gráfico de barras para exibição das diferenças nutricionais.
-- Exibição, logo abaixo da comparação, de alimentos sugeridos como substituições.
-- Tela de histórico de comparações.
-
-## Experiência do Usuário (UX)
-
-- **Simplicidade:** Interfaces limpas e intuitivas.
-- **Navegação fluida:** Fácil acesso às funcionalidades e exibição clara dos dados.
-- **Feedback visual:** O usuário receberá respostas imediatas a cada ação realizada.
+---
 
 ## Ferramentas e Tecnologias Utilizadas
 
 - **IDE:** Android Studio.
 - **Linguagem:** Java.
 - **Banco de Dados:** SQLite.
-- **Bibliotecas:** Retrofit e Room.
+- **Bibliotecas:** AndroidX, Material Design.
 
-## Planejamento de Entregas
-
-| Sprint   | Descrição                                                    | Duração   |
-|----------|---------------------------------------------------------------|-----------|
-| Sprint 1 | Modelagem do banco de dados e implementação da tela de cadastro| 2 semanas |
-| Sprint 2 | Implementação da tela de listagem de alimentos e funcionalidade de comparação | 2 semanas |
-| Sprint 3 | Ajuste dinâmico de porções e exibição de alternativas nutricionais | 2 semanas |
-| Sprint 4 | Melhorias de design e ajustes de UX | 2 semanas |
+---
 
 ## Considerações Finais
 
-### Desafios Esperados:
+O **NutriComp** está se aproximando das funcionalidades finais, com a comparação detalhada e ajuste de porções sendo implementados nas próximas sprints. O uso de metodologias ágeis como Scrum permite uma abordagem flexível, garantindo que o produto evolua com base no feedback dos usuários e nos testes realizados.
 
-- Implementação eficiente da comparação de porções dinâmicas e exibição de substituições nutricionais.
-- Otimização da interface para clareza, mesmo com muitos dados.
-
-### Possíveis Melhorias:
-
-- Dicas de alimentação e substituições saudáveis.
-- Integração com APIs nutricionais.
-- Geolocalização para sugerir alimentos saudáveis.
-
-## Referências
-
-- [https://www.sqlite.org/docs.html](https://www.sqlite.org/docs.html)
-- [https://developer.android.com/studio](https://developer.android.com/studio)
-- [https://developer.android.com/guide](https://developer.android.com/guide)
-- [https://www.myfitnesspal.com](https://www.myfitnesspal.com)
-- [https://www.fooducate.com](https://www.fooducate.com)
-- [https://fdc.nal.usda.gov](https://fdc.nal.usda.gov)
-- [https://www.redalyc.org/journal/6257/625767707007/html/](https://www.redalyc.org/journal/6257/625767707007/html/)
-- [https://www.scrum.org](https://www.scrum.org)
-- [https://www.agilealliance.org](https://www.agilealliance.org)
-- [https://developer.android.com/](https://developer.android.com/)
-- [https://docs.oracle.com/javase/](https://docs.oracle.com/javase/)
-- [https://www.nngroup.com](https://www.nngroup.com)
