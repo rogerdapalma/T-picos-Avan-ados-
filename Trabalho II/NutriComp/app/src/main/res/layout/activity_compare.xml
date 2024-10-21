@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewAlimento1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alimento 1" />
+
+    <TextView
+        android:id="@+id/textViewCalorias1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calorias" />
+
+    <TextView
+        android:id="@+id/textViewProteinas1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proteínas" />
+
+    <TextView
+        android:id="@+id/textViewCarboidratos1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carboidratos" />
+
+    <TextView
+        android:id="@+id/textViewAlimento2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alimento 2" />
+
+    <TextView
+        android:id="@+id/textViewCalorias2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calorias" />
+
+    <TextView
+        android:id="@+id/textViewProteinas2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proteínas" />
+
+    <TextView
+        android:id="@+id/textViewCarboidratos2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carboidratos" />
+</LinearLayout>
