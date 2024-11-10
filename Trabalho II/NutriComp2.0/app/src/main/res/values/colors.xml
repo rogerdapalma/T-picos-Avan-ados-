@@ -1,0 +1,23 @@
+<resources>
+    <!-- Tons de verde para uma sensação de frescor e saúde -->
+    <color name="green_primary">#4CAF50</color>
+    <color name="green_dark">#388E3C</color>
+    <color name="green_light">#C8E6C9</color>
+
+    <!-- Tons neutros para fundo e contraste -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_dark">#EEEEEE</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- Tons de azul para contraste e sensação de calma -->
+    <color name="blue_accent">#03A9F4</color>
+    <color name="blue_light">#B3E5FC</color>
+
+    <!-- Cor de destaque para botões e ícones -->
+    <color name="accent">#FF5722</color>
+
+    <!-- Branco e preto para elementos de texto e contraste -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

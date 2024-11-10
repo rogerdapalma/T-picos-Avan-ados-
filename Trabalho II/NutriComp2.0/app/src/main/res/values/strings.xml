@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NutriComp</string>
+    <string name="login">Login</string>
+    <string name="register">Registrar</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="name">Nome</string>
+    <string name="calories">Calorias</string>
+    <string name="proteins">Proteínas</string>
+    <string name="carbs">Carboidratos</string>
+    <string name="food_list">Lista de Alimentos</string>
+    <string name="compare">Comparar</string>
+</resources>

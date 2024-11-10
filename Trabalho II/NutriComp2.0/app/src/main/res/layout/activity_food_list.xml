@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Linha contendo barra de pesquisa e campo de gramas -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <!-- Barra de Pesquisa -->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:hint="Pesquisar Alimentos"
+            android:padding="8dp" />
+
+        <!-- Campo para entrada de gramas -->
+        <EditText
+            android:id="@+id/editTextGramas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:hint="Gramas"
+            android:inputType="number"
+            android:padding="8dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- RecyclerView para mostrar a lista de alimentos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAlimentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

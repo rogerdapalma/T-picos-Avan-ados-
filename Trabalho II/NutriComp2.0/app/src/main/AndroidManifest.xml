@@ -1,0 +1,34 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nutricomp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NutriComp">
+
+        <!-- LoginActivity será a tela principal ao iniciar o app -->
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- MainActivity para exibir a tela inicial após o login -->
+        <activity android:name=".ui.MainActivity" android:exported="false" />
+
+        <!-- RegisterActivity para a tela de cadastro -->
+        <activity android:name=".ui.RegisterActivity" android:exported="false" />
+
+        <!-- FoodListActivity para exibir a lista de alimentos com a barra de pesquisa -->
+        <activity android:name=".ui.FoodListActivity" android:exported="false" />
+
+        <!-- CompareActivity para exibir a comparação de alimentos -->
+        <activity android:name=".ui.CompareActivity" android:exported="false" />
+
+    </application>
+</manifest>
